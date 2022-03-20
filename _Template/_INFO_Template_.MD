@@ -67,7 +67,7 @@ ___
    - ```_* #Mix```
 
 > Description :
- - A Plug Able Decentralised SeedBox 
+ - A Plugable Decentralised SeedBox 
 ___
 
 >***Advance ;***
