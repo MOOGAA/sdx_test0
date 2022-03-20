@@ -1,5 +1,11 @@
 # Use your favorite image
 FROM ubuntu
+
+ENV \
+  DEBIAN_FRONTEND=noninteractive \
+  TZ=Asia/Kolkata
+#_###
+
 ARG S6_OVERLAY_VERSION=3.1.0.1
 
 RUN apt-get update && apt-get install -y nginx xz-utils
