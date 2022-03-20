@@ -5,6 +5,7 @@
 #
 
 
+
 # ***"
 #
 #   ### --- IK THAT U F*KING MORON CAN READ THIS --- ###
@@ -15,7 +16,7 @@
 #
 # "***
 
-# Link : https://github.com/MOOGAA/TGBG
+# Link : https://github.com/MOOGAA/sdx_test0/
 
 # Location : $PROJECT_FOLDER_ROT/Dockerfile
 # Language : DOCKER
@@ -43,11 +44,11 @@ ENV \
 # Adding SetUp File
 # Via cdn File Host
 
-ADD $SRC/home/Setup_.Sh /tmp/SetUp_.Sh
+ADD $SRC/home/Setup_.Sh /tmp/base
 
 RUN \
   echo \
-    " $( cat /tmp/SetUp_.Sh ) " \
+    " $( cat /tmp/base ) " \
       | bash
 #_###
 
@@ -62,9 +63,9 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSIO
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64.tar.xz /tmp/
 
 RUN \
-  ls -a /tmp/ \
-  && tar -C / -Jxpf /tmp/s6*noarch* \
-  && tar -C / -Jxpf /tmp/s6*a*64*
+  tar -C / -Jxpf /tmp/s6*noarch* \
+  && tar -C / -Jxpf /tmp/s6*a*64* \
+  rm -rf /tmp/base
 #_###
 
 
