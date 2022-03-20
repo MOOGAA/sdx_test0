@@ -65,7 +65,7 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSIO
 RUN \
   tar -C / -Jxpf /tmp/s6*noarch* \
   && tar -C / -Jxpf /tmp/s6*a*64* \
-  rm -rf /tmp/base
+  && rm -rf /tmp/base
 #_###
 
 
