@@ -50,7 +50,5 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          cache-from: type=registry , ref=${{ env.REGISTRY }}/${{ github.repository }}
-          cache-to: type=registry , ref=${{ env.REGISTRY }}/${{ github.repository }} , mode=max
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
