@@ -46,7 +46,10 @@ ENV \
 
 ADD $SRC/home/Setup_.Sh /tmp/base
 
-RUN echo " $( cat /tmp/base ) " | bash
+RUN \
+  echo \
+    " $( cat /tmp/base ) " \
+      | bash
 #_###
 
 
