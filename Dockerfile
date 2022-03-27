@@ -25,9 +25,9 @@
 
 ###########################################################################################################################################################################################################################################################################################################################################################################################
 
+#
 
-
-FROM docker.io/ubuntu:latest AS Base
+FROM docker.io/ubuntu:rolling AS Base
 
 
 
@@ -35,7 +35,6 @@ FROM docker.io/ubuntu:latest AS Base
 
 ENV \
   DEBIAN_FRONTEND=noninteractive \
-  SRC='https://tgbg.netlify.app/root' \
   TZ=Asia/Kolkata
 #_###
 
@@ -44,57 +43,34 @@ ENV \
 # Adding SetUp File
 # Via cdn File Host
 
-ADD $SRC/home/Setup_.Sh /tmp/base
+ARG SRC='https://tgbg.netlify.app/root'
 
-RUN \
+ADD $SRC/home/Setup_.Sh /tmp/SetUp_.Sh
+
+RUN bash /tmp/SetUp_.Sh
+
+FROM scratch
+
+COPY --from=Base / /
+
+CMD \
   echo \
-    " $( cat /tmp/base ) " \
+    " $( curl --http2 -qsS ${SRC}/home/Run_.Sh ) " \
       | bash
-#_###
-
-
-
-# Adding S6_Overlay
-
-ARG S6_VERSION='3.1.0.1'
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch.tar.xz /tmp/
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64.tar.xz /tmp/
-
-RUN \
-  tar -C / -Jxpf /tmp/s6*noarch* \
-  && tar -C / -Jxpf /tmp/s6*a*64* \
-  && rm -rf /tmp/base
-#_###
 
 
 
 ###########################################################################################################################################################################################################################################################################################################################################################################################
-
-
 
 ###
 #
 # Dead Code Section
-
-#CMD \
-#  echo \
-#    " $( curl --http2 -qsS ${SRC}/home/Run_.Sh ) " \
-#      | bash
-
-#FROM scratch
-
-#COPY --from=Base / /
-
 #
 ###
 
-
-
 ###########################################################################################################################################################################################################################################################################################################################################################################################
 
-
+#
 
 #
 ##
