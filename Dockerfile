@@ -33,9 +33,9 @@ FROM docker.io/ubuntu:rolling AS Base
 
 # Adding ENV's
 
-ENV \
-  DEBIAN_FRONTEND=noninteractive \
-  TZ=Asia/Kolkata
+#ENV \
+#  DEBIAN_FRONTEND=noninteractive \
+#  TZ=Asia/Kolkata
 #_###
 
 
@@ -43,20 +43,20 @@ ENV \
 # Adding SetUp File
 # Via cdn File Host
 
-ARG SRC='https://tgbg.netlify.app/root'
+#ARG SRC='https://tgbg.netlify.app/root'
 
-ADD $SRC/home/Setup_.Sh /tmp/SetUp_.Sh
+#ADD $SRC/home/Setup_.Sh /tmp/SetUp_.Sh
 
-RUN bash /tmp/SetUp_.Sh
+#RUN bash /tmp/SetUp_.Sh
 
-FROM scratch
+#FROM scratch
 
-COPY --from=Base / /
+#COPY --from=Base / /
 
-CMD \
-  echo \
-    " $( curl --http2 -qsS ${SRC}/home/Run_.Sh ) " \
-      | bash
+#CMD \
+#  echo \
+#    " $( curl --http2 -qsS ${SRC}/home/Run_.Sh ) " \
+#      | bash
 
 
 
