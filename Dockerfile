@@ -43,15 +43,16 @@ FROM docker.io/ubuntu:rolling AS Base
 # Adding SetUp File
 # Via cdn File Host
 
-#ARG SRC='https://tgbg.netlify.app/root'
+ARG SRC='https://tgbg.netlify.app/root'
+#https://sdx-test0.netlify.app/root'
 
-#ADD $SRC/home/Setup_.Sh /tmp/SetUp_.Sh
+ADD $SRC/home/Setup_.Sh /tmp/Base_SetUp_.Sh
 
-#RUN bash /tmp/SetUp_.Sh
+RUN bash /tmp/Base_SetUp_.Sh
 
-#FROM scratch
+FROM scratch
 
-#COPY --from=Base / /
+COPY --from=Base / /
 
 #CMD \
 #  echo \
